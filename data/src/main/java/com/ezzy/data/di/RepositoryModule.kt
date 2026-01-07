@@ -7,21 +7,18 @@ import com.ezzy.domain.repository.GoalRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
+@[Module InstallIn(ViewModelComponent::class)]
+internal abstract class RepositoryModule {
 
-    @Binds
-    @Singleton
+    @[Binds ViewModelScoped]
     abstract fun bindGoalRepository(
         impl: GoalRepositoryImpl
     ): GoalRepository
 
-    @Binds
-    @Singleton
+    @[Binds ViewModelScoped]
     abstract fun bindContributionRepository(
         impl: ContributionRepositoryImpl
     ): ContributionRepository

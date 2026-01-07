@@ -44,11 +44,12 @@ import com.ezzy.presentation.features.goal.createGoal.composables.GoalCreatedDia
 import com.ezzy.presentation.features.goal.createGoal.events.CreateGoalEvent
 import com.ezzy.presentation.features.goal.createGoal.state.CreateGoalState
 import com.ezzy.presentation.features.goal.createGoal.viewmodel.CreateGoalViewModel
+import com.ezzy.presentation.features.goal.createGoal.viewmodel.NewViewModel
 import com.ezzy.presentation.features.utils.appBackground
 
 @Composable
 fun CreateGoalRootScreen(
-    viewModel: CreateGoalViewModel = hiltViewModel(),
+    viewModel: NewViewModel = hiltViewModel(),
     onNavigateBack: () -> Unit,
     onNavigateToMyGoals: () -> Unit
 ) {
@@ -125,48 +126,46 @@ private fun CreateGoalScreen(
         )
 
 
-        if (state.showDatePicker) {
-            DatePickerBottomSheet(
-                selectedDate = state.targetDate,
-                onDateSelected = {
-                    dispatchAction(
-                        CreateGoalAction.OnDateSelected(it)
-                    )
-                },
-                onDismiss = {
-                    dispatchAction(
-                        CreateGoalAction.DismissDatePicker
-                    )
+        when {
+            state.showDatePicker -> {
+                DatePickerBottomSheet(
+                    selectedDate = state.targetDate,
+                    onDateSelected = {
+                        dispatchAction(
+                            CreateGoalAction.OnDateSelected(it)
+                        )
+                    },
+                    onDismiss = {
+                        dispatchAction(
+                            CreateGoalAction.DismissDatePicker
+                        )
+                    }
+                )
+            }
+            state.showSuccessDialog -> {
+                GoalCreatedDialog(
+                    goalName = state.name,
+                    onDismiss = {
+                        dispatchAction(
+                            CreateGoalAction.DismissSuccessDialog
+                        )
+                    },
+                    onGoToGoals = {
+                        dispatchAction(
+                            CreateGoalAction.GoToMyGoals
+                        )
+                    }
+                )
+            }
+            state.isSaving -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.25f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
                 }
-            )
-        }
-
-
-        if (state.showSuccessDialog) {
-            GoalCreatedDialog(
-                goalName = state.name,
-                onDismiss = {
-                    dispatchAction(
-                        CreateGoalAction.DismissSuccessDialog
-                    )
-                },
-                onGoToGoals = {
-                    dispatchAction(
-                        CreateGoalAction.GoToMyGoals
-                    )
-                }
-            )
-        }
-
-
-        if (state.isSaving) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.25f)),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
             }
         }
     }

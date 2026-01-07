@@ -1,16 +1,19 @@
 package com.ezzy.data.repository
 
 import com.ezzy.data.room.dao.ContributionDao
+import com.ezzy.data.room.database.AppDatabase
 import com.ezzy.data.room.entities.ContributionEntity
 import com.ezzy.data.room.mappers.toDomain
 import com.ezzy.domain.models.Contribution
 import com.ezzy.domain.repository.ContributionRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class ContributionRepositoryImpl(
-    private val contributionDao: ContributionDao
+class ContributionRepositoryImpl @Inject constructor(
+    appDatabase: AppDatabase
 ) : ContributionRepository {
+    private val contributionDao: ContributionDao = appDatabase.contributionDao()
 
     override fun getContributionsForGoal(goalId: Long): Flow<List<Contribution>> =
         contributionDao

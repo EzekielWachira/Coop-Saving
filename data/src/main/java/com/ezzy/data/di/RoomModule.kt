@@ -27,10 +27,12 @@ object RoomModule {
         .build()
 
     @Provides
+    @Singleton
     fun provideGoalDao(db: AppDatabase): GoalDao =
         db.goalDao()
 
     @Provides
+    @Singleton
     fun provideContributionDao(db: AppDatabase): ContributionDao =
         db.contributionDao()
 

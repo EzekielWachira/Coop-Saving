@@ -2,6 +2,7 @@ package com.ezzy.data.repository
 
 import com.ezzy.data.room.dao.ContributionDao
 import com.ezzy.data.room.dao.GoalDao
+import com.ezzy.data.room.database.AppDatabase
 import com.ezzy.data.room.mappers.toDomain
 import com.ezzy.data.room.mappers.toEntity
 import com.ezzy.domain.enums.GoalStatus
@@ -9,12 +10,13 @@ import com.ezzy.domain.models.Goal
 import com.ezzy.domain.repository.GoalRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class GoalRepositoryImpl(
-    private val goalDao: GoalDao,
-    private val contributionDao: ContributionDao
+class GoalRepositoryImpl @Inject constructor(
+    appDatabase: AppDatabase
 ) : GoalRepository {
+    private val goalDao: GoalDao = appDatabase.goalDao()
+    private val contributionDao: ContributionDao = appDatabase.contributionDao()
 
     override fun getGoals(
         status: GoalStatus
