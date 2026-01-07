@@ -3,7 +3,7 @@
 An Android application for creating savings goals, tracking contributions, and monitoring progress.
 Built using **Jetpack Compose**, **MVVM + MVI**, **Room**, and **Clean Architecture** principles.
 
-> **Note:** This project is not yet complete due to time constraints. Please complete the remaining features and improvements at a later time.
+> **Note:** This project is not yet complete due to time constraints. Please give me time to complete the remaining features and improvements.
 
 ---
 
