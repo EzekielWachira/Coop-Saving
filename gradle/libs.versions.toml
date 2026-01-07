@@ -12,6 +12,7 @@ jetbrainsKotlinJvm = "2.0.21"
 appcompat = "1.7.1"
 material = "1.13.0"
 ksp = "2.0.21-1.0.27"
+kotlinx-coroutines-core = "1.8.1"
 
 room-db = "2.8.4"
 dagger-hilt= "2.57.1"
@@ -41,6 +42,7 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagge
 hilt-ksp = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger-hilt" }
 
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
