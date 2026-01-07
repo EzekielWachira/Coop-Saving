@@ -13,6 +13,8 @@ appcompat = "1.7.1"
 material = "1.13.0"
 ksp = "2.0.21-1.0.27"
 kotlinx-coroutines-core = "1.8.1"
+hilt-navigation-compose = "1.2.0"
+navigation-compose = "2.9.4"
 
 room-db = "2.8.4"
 dagger-hilt= "2.57.1"
@@ -43,6 +45,9 @@ hilt-ksp = { module = "com.google.dagger:hilt-android-compiler", version.ref = "
 
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -53,3 +58,4 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 dagger-hilt = {id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt"}
 
+[bundles]
