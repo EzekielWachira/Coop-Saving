@@ -3,6 +3,7 @@ package com.ezzy.data.room.entities
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
@@ -14,11 +15,12 @@ import androidx.room.PrimaryKey
             childColumns = ["goalId"],
             onDelete = CASCADE
         )
-    ]
+    ],
+    indices = [Index("goalId")]
 )
 data class ContributionEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val goalId: Long,
     val amount: Double,
-    val date: Long
+    val date: Long = System.currentTimeMillis()
 )

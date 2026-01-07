@@ -4,6 +4,7 @@ import com.ezzy.presentation.features.home.actions.HomeAction
 import com.ezzy.presentation.features.home.enums.HomeCardAction
 import com.ezzy.presentation.features.home.enums.NavDirection
 import com.ezzy.presentation.features.home.events.HomeEvent
+import com.ezzy.presentation.features.home.events.HomeEvent.*
 import com.ezzy.presentation.features.home.state.HomeState
 import com.ezzy.presentation.mviSetUp.viewModel.BaseMviViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,17 +27,21 @@ class HomeViewModel @Inject constructor(
             is HomeAction.OnCardClicked -> {
                 when (action.action) {
                     HomeCardAction.SAVING -> {
-                        sendEvent(HomeEvent.Navigate(NavDirection.GoalSavings))
+                        sendEvent(Navigate(NavDirection.GoalSavings))
                     }
 
                     HomeCardAction.INVESTMENT -> {
-                        sendEvent(HomeEvent.Navigate(NavDirection.InvestmentStyle))
+                        sendEvent(Navigate(NavDirection.InvestmentStyle))
                     }
                 }
             }
 
             HomeAction.OnProfileClicked -> {
-                sendEvent(HomeEvent.Navigate(NavDirection.LearnSavings))
+                sendEvent(Navigate(NavDirection.LearnSavings))
+            }
+
+            HomeAction.NavigateToSavings -> {
+                sendEvent(Navigate(NavDirection.GoalSavings))
             }
         }
     }

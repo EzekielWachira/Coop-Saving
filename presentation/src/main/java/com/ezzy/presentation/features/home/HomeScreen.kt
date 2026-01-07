@@ -75,7 +75,12 @@ private fun HomeScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color(0xFF0F3D2E))
-                .padding(16.dp)
+                .padding(
+                    start = 16.dp,
+                    end = 16.dp,
+                    top = 40.dp,
+                    bottom = 16.dp
+                )
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -125,7 +130,12 @@ private fun HomeScreen(
             subtitle = "Turn your goal into \nsavings",
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 16.dp),
+            onClick = {
+                onAction(
+                    HomeAction.NavigateToSavings
+                )
+            }
         )
 
         Spacer(Modifier.height(32.dp))

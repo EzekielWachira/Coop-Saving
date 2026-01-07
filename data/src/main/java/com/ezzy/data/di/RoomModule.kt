@@ -28,10 +28,10 @@ object RoomModule {
 
     @Provides
     fun provideGoalDao(db: AppDatabase): GoalDao =
-        db.goalDao
+        db.goalDao()
 
     @Provides
     fun provideContributionDao(db: AppDatabase): ContributionDao =
-        db.contributionDao
+        db.contributionDao()
 
 }
