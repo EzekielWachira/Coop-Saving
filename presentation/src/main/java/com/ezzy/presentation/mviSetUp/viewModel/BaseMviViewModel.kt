@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import kotlin.reflect.KClass
 
 /**
- * Base ViewModel implementation for MVI (Model–View–Intent) architecture.
+ * Base ViewModel implementation for MVI (Model–View–Intent) pattern.
  *
  * This class coordinates three core components:
  *
