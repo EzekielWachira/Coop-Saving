@@ -9,6 +9,7 @@ import com.ezzy.presentation.features.goal.createGoal.state.CreateGoalState
 import com.ezzy.presentation.mviSetUp.viewModel.BaseMviViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -94,7 +95,7 @@ class CreateGoalViewModel @Inject constructor(
                 targetDate != null
 
     private fun CreateGoalState.saveGoal(): CreateGoalState {
-
+        copy(isSaving = true)
         viewModelScope.launch {
             try {
                 val goalId = goalRepository.addGoal(
@@ -116,6 +117,8 @@ class CreateGoalViewModel @Inject constructor(
                     createdGoalId = goalId
                 )
 
+                Timber.d("Goal saved with ID: ${state.value}")
+
             } catch (t: Throwable) {
                 sendEvent(
                     CreateGoalEvent.ShowError(
@@ -127,6 +130,6 @@ class CreateGoalViewModel @Inject constructor(
             }
         }
 
-        return copy(isSaving = true)
+        return copy(isSaving = false)
     }
 }

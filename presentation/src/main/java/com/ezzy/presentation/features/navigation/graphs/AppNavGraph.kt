@@ -1,13 +1,10 @@
 package com.ezzy.presentation.features.navigation.graphs
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.ezzy.presentation.features.goal.createGoal.CreateGoalRootScreen
-import com.ezzy.presentation.features.goal.createGoal.viewmodel.CreateGoalViewModel
 import com.ezzy.presentation.features.home.HomeRootScreen
 import com.ezzy.presentation.features.home.enums.NavDirection
 import com.ezzy.presentation.features.navigation.AppRoute
@@ -28,6 +25,7 @@ fun AppNavGraph(
                         NavDirection.GoalSavings -> {
                             navController.navigate(AppRoute.CreateGoalsScreen)
                         }
+
                         NavDirection.LearnSavings -> {}
                         NavDirection.InvestmentStyle -> {}
                     }
@@ -35,7 +33,7 @@ fun AppNavGraph(
             )
         }
 
-        composable<AppRoute.CreateGoalsScreen> {backStackEntry ->
+        composable<AppRoute.CreateGoalsScreen> { backStackEntry ->
             CreateGoalRootScreen(
                 onNavigateBack = {
                     navController.navigateUp()

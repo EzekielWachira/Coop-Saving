@@ -2,6 +2,7 @@ package com.ezzy.presentation.features.goal.createGoal
 
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -35,7 +37,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ezzy.designsystem.theme.CoopSavingTheme
 import com.ezzy.domain.enums.GoalCategory
 import com.ezzy.presentation.features.common.DatePickerBottomSheet
@@ -45,7 +46,6 @@ import com.ezzy.presentation.features.goal.createGoal.composables.GoalCreatedDia
 import com.ezzy.presentation.features.goal.createGoal.events.CreateGoalEvent
 import com.ezzy.presentation.features.goal.createGoal.state.CreateGoalState
 import com.ezzy.presentation.features.goal.createGoal.viewmodel.CreateGoalViewModel
-import com.ezzy.presentation.features.goal.createGoal.viewmodel.NewViewModel
 import com.ezzy.presentation.features.utils.appBackground
 
 @Composable
@@ -143,6 +143,7 @@ private fun CreateGoalScreen(
                     }
                 )
             }
+
             state.showSuccessDialog -> {
                 GoalCreatedDialog(
                     goalName = state.name,
@@ -158,6 +159,7 @@ private fun CreateGoalScreen(
                     }
                 )
             }
+
             state.isSaving -> {
                 Box(
                     modifier = Modifier
@@ -242,7 +244,11 @@ private fun CreateGoalContent(
         Spacer(Modifier.height(16.dp))
 
         OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable(true) {
+                    onDateClick()
+                },
             value = state.targetDate?.toString() ?: "",
             onValueChange = {},
             readOnly = true,
@@ -259,10 +265,16 @@ private fun CreateGoalContent(
         Button(
             modifier = Modifier.fillMaxWidth(),
             enabled = !state.isSaving,
-            onClick = onSubmit
+            onClick = onSubmit,
+            shape = RoundedCornerShape(8.dp)
         ) {
-            Text("Create Goal")
+            Text(
+                "Create Goal",
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
         }
+
+        Spacer(modifier = Modifier.height(20.dp))
     }
 }
 

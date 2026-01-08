@@ -1,5 +1,7 @@
 package com.ezzy.presentation.features.goal.createGoal.composables
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -14,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ezzy.designsystem.theme.CoopSavingTheme
@@ -21,36 +24,46 @@ import com.ezzy.domain.enums.GoalCategory
 
 @Composable
 fun GoalCategoryDropdown(
+    modifier: Modifier = Modifier,
     selected: GoalCategory?,
     onSelected: (GoalCategory) -> Unit = {}
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    OutlinedTextField(
-        modifier = Modifier.fillMaxWidth(),
-        value = selected?.name ?: "",
-        onValueChange = {},
-        readOnly = true,
-        label = { Text("Goal Category") },
-        trailingIcon = {
-            IconButton(onClick = { expanded = true }) {
-                Icon(Icons.Default.ArrowDropDown, null)
-            }
-        }
-    )
-
-    DropdownMenu(
-        expanded = expanded,
-        onDismissRequest = { expanded = false }
+    Box(
+        contentAlignment = Alignment.BottomEnd,
+        modifier = Modifier.fillMaxWidth()
     ) {
-        GoalCategory.entries.forEach { category ->
-            DropdownMenuItem(
-                text = { Text(category.name) },
-                onClick = {
-                    expanded = false
-                    onSelected(category)
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable(true) {
+                    expanded = true
+                },
+            value = selected?.name ?: "",
+            onValueChange = {},
+            readOnly = true,
+            label = { Text("Goal Category") },
+            trailingIcon = {
+                IconButton(onClick = { expanded = true }) {
+                    Icon(Icons.Default.ArrowDropDown, null)
                 }
-            )
+            }
+        )
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            GoalCategory.entries.forEach { category ->
+                DropdownMenuItem(
+                    text = { Text(category.name) },
+                    onClick = {
+                        expanded = false
+                        onSelected(category)
+                    }
+                )
+            }
         }
     }
 }
