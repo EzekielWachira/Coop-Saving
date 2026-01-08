@@ -1,6 +1,7 @@
 package com.ezzy.presentation.features.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -89,6 +90,9 @@ private fun HomeScreen(
                     modifier = Modifier
                         .size(48.dp)
                         .background(Color.White, CircleShape)
+                        .clickable(enabled = true) {
+                            onAction(HomeAction.NavigateToMyGoals)
+                        }
                 )
 
                 Spacer(Modifier.width(12.dp))

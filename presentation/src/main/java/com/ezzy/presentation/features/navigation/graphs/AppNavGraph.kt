@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.ezzy.presentation.features.goal.createGoal.CreateGoalRootScreen
+import com.ezzy.presentation.features.goal.goalsMain.GoalsRoute
 import com.ezzy.presentation.features.home.HomeRootScreen
 import com.ezzy.presentation.features.home.enums.NavDirection
 import com.ezzy.presentation.features.navigation.AppRoute
@@ -28,6 +29,9 @@ fun AppNavGraph(
 
                         NavDirection.LearnSavings -> {}
                         NavDirection.InvestmentStyle -> {}
+                        NavDirection.MyGoals -> {
+                            navController.navigate(AppRoute.GoalsScreen)
+                        }
                     }
                 }
             )
@@ -38,7 +42,23 @@ fun AppNavGraph(
                 onNavigateBack = {
                     navController.navigateUp()
                 },
-                onNavigateToMyGoals = {},
+                onNavigateToMyGoals = {
+                    navController.navigate(AppRoute.GoalsScreen)
+                },
+            )
+        }
+
+        composable<AppRoute.GoalsScreen> {
+            GoalsRoute(
+                onNavigateToCreateGoal = {
+                    navController.navigate(AppRoute.CreateGoalsScreen)
+                },
+                onNavigateToDeposit = { goalId ->
+
+                },
+                onNavigateToWithdraw = { goalId ->
+
+                }
             )
         }
 

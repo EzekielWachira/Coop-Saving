@@ -37,7 +37,7 @@ fun HomeCard(
         modifier = Modifier
             .width(300.dp)
             .height(130.dp)
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(8.dp))
             .background(Color.Transparent)
             .clickable { onClick() }
     ) {

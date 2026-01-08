@@ -9,13 +9,8 @@ sealed interface AppRoute {
     data object Home : AppRoute
 
     @Serializable
-    data class Details(
-        val id: String
-    ) : AppRoute
-
-    @Serializable
-    data object Profile : AppRoute
-
-    @Serializable
     data object CreateGoalsScreen : AppRoute
+
+    @Serializable
+    data object GoalsScreen : AppRoute
 }

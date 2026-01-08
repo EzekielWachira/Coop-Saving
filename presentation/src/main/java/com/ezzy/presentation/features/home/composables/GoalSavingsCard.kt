@@ -42,7 +42,7 @@ fun GoalSavingsCard(
     Box(
         modifier = modifier
             .height(170.dp)
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(8.dp))
             .background(
                 brush = Brush.horizontalGradient(
                     colors = listOf(

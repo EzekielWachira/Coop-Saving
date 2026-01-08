@@ -26,7 +26,7 @@ import com.ezzy.designsystem.theme.ForestTeal
 import com.ezzy.designsystem.theme.PineDark
 
 @Composable
-private fun GoalsTopBar() {
+fun GoalsTopBar() {
     Box(
         modifier = Modifier
             .fillMaxWidth()

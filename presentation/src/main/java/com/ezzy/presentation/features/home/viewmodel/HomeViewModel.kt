@@ -43,6 +43,10 @@ class HomeViewModel @Inject constructor(
             HomeAction.NavigateToSavings -> {
                 sendEvent(Navigate(NavDirection.GoalSavings))
             }
+
+            HomeAction.NavigateToMyGoals -> {
+                sendEvent(Navigate(NavDirection.MyGoals))
+            }
         }
     }
 }

@@ -7,4 +7,5 @@ sealed interface HomeAction : MviAction {
     data object OnProfileClicked : HomeAction
     data class OnCardClicked(val action: HomeCardAction) : HomeAction
     data object NavigateToSavings : HomeAction
+    data object NavigateToMyGoals : HomeAction
 }
