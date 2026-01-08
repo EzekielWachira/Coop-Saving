@@ -13,4 +13,11 @@ sealed interface AppRoute {
 
     @Serializable
     data object GoalsScreen : AppRoute
+
+    @Serializable
+    data class WithdrawScreen(val goalId: Long) : AppRoute
+
+    @Serializable
+    data class DepositScreen(val goalId: Long) : AppRoute
+
 }

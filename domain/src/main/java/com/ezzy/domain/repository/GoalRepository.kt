@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface GoalRepository {
 
-    fun getGoals(status: GoalStatus): Flow<List<Goal>>
+    fun getGoals(status: GoalStatus = GoalStatus.ACTIVE): Flow<List<Goal>>
 
     suspend fun getGoalById(goalId: Long): Goal?
 
