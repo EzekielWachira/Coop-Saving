@@ -95,7 +95,6 @@ class CreateGoalViewModel @Inject constructor(
                 targetDate != null
 
     private fun CreateGoalState.saveGoal(): CreateGoalState {
-        copy(isSaving = true)
         viewModelScope.launch {
             try {
                 val goalId = goalRepository.addGoal(
@@ -111,22 +110,22 @@ class CreateGoalViewModel @Inject constructor(
                     )
                 )
 
-                copy(
-                    isSaving = false,
-                    showSuccessDialog = true,
-                    createdGoalId = goalId
-                )
-
-                Timber.d("Goal saved with ID: ${state.value}")
-
+                reduce {
+                    copy(
+                        isSaving = false,
+                        showSuccessDialog = true,
+                        createdGoalId = goalId
+                    )
+                }
             } catch (t: Throwable) {
                 sendEvent(
                     CreateGoalEvent.ShowError(
                         "Failed to create goal"
                     )
                 )
-
-                copy(isSaving = false)
+                reduce {
+                    copy(isSaving = false)
+                }
             }
         }
 

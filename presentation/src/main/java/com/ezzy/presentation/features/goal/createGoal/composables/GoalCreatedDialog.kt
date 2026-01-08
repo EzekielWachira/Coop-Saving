@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.ezzy.designsystem.R
 import com.ezzy.designsystem.theme.CoopSavingTheme
 import com.ezzy.designsystem.theme.TextGreen
@@ -32,7 +33,13 @@ fun GoalCreatedDialog(
     onDismiss: () -> Unit,
     onGoToGoals: () -> Unit
 ) {
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(
+            dismissOnBackPress = false,
+            dismissOnClickOutside = false
+        )
+    ) {
         Card(shape = RoundedCornerShape(16.dp)) {
             Column(
                 modifier = Modifier.padding(24.dp),
