@@ -66,6 +66,10 @@ class DepositViewModel @Inject constructor(
             sendEvent(DepositEvent.NavigateToGoals)
             copy(showSuccessDialog = false)
         }
+
+        registerReducer(DepositAction.PhoneChanged::class) {
+            copy(phoneNumber = it.value)
+        }
     }
 
     override fun onUnhandledAction(action: DepositAction) {
@@ -94,8 +98,14 @@ class DepositViewModel @Inject constructor(
 
     private fun DepositState.isValid(): Boolean =
         amount.toDoubleOrNull()?.let { it > 0 } == true &&
-                (fundFrom != FundSource.COOP_ACCOUNT ||
-                        amount.toDouble() <= (creditAccount?.balance ?: 0.0))
+                (
+                        fundFrom != FundSource.MPESA ||
+                                phoneNumber.length >= 9
+                        ) &&
+                (
+                        fundFrom != FundSource.COOP_ACCOUNT ||
+                                amount.toDouble() <= (creditAccount?.balance ?: .0)
+                        )
 
     private fun DepositState.submitDeposit(): DepositState {
 

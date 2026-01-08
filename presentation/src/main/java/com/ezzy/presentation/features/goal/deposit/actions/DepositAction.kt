@@ -12,6 +12,7 @@ sealed interface DepositAction : MviAction {
     data class FundSourceSelected(val source: FundSource) : DepositAction
 
     data class AmountChanged(val value: String) : DepositAction
+    data class PhoneChanged(val value: String) : DepositAction
 
     data object Submit : DepositAction
 

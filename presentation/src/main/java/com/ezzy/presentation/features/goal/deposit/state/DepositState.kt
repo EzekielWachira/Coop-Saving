@@ -14,6 +14,7 @@ data class DepositState(
     val fundFrom: FundSource = FundSource.COOP_ACCOUNT,
 
     val amount: String = "",
+    val phoneNumber: String = "",
 
     val isSubmitting: Boolean = false,
     val showSuccessDialog: Boolean = false,

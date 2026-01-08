@@ -15,8 +15,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -89,7 +92,10 @@ fun DepositRoute(
             },
             onSubmit = {
                 dispatchAction(DepositAction.Submit)
-            }
+            },
+            onPhoneChanged = {
+                viewModel.dispatch(DepositAction.PhoneChanged(it))
+            },
         )
 
         if (state.showSuccessDialog) {
@@ -125,7 +131,8 @@ fun DepositScreen(
     onGoalSelected: (Long) -> Unit = {},
     onFundSourceSelected: (FundSource) -> Unit = {},
     onAmountChanged: (String) -> Unit = {},
-    onSubmit: () -> Unit = {}
+    onSubmit: () -> Unit = {},
+    onPhoneChanged: (String) -> Unit = {},
 ) {
     Column(
         Modifier
@@ -182,11 +189,24 @@ fun DepositScreen(
 
             AnimatedVisibility(state.fundFrom == FundSource.COOP_ACCOUNT) {
                 Column {
-                    Spacer(Modifier.height(16.dp))
                     state.creditAccount?.let {
                         CreditAccountSelector(account = it)
                     }
                 }
+            }
+
+            if (state.fundFrom == FundSource.MPESA) {
+                Spacer(Modifier.height(16.dp))
+
+                OutlinedTextField(
+                    value = state.phoneNumber,
+                    onValueChange = onPhoneChanged,
+                    label = { Text("Phone Number") },
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Phone
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
 
 
