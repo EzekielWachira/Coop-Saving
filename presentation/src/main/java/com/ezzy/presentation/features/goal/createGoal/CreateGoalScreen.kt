@@ -35,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ezzy.designsystem.theme.CoopSavingTheme
 import com.ezzy.domain.enums.GoalCategory
 import com.ezzy.presentation.features.common.DatePickerBottomSheet
@@ -49,7 +50,7 @@ import com.ezzy.presentation.features.utils.appBackground
 
 @Composable
 fun CreateGoalRootScreen(
-    viewModel: NewViewModel = hiltViewModel(),
+    viewModel: CreateGoalViewModel = hiltViewModel(),
     onNavigateBack: () -> Unit,
     onNavigateToMyGoals: () -> Unit
 ) {

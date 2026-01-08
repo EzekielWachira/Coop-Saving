@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewViewModel @Inject constructor(
-    private val goalRepository: ContributionRepositoryImpl
+    private val goalRepository: GoalRepository
 ) : BaseMviViewModel<
         CreateGoalState,
         CreateGoalAction,
