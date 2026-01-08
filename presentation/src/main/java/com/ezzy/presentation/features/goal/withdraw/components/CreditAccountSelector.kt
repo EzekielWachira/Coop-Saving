@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ezzy.designsystem.R
+import com.ezzy.designsystem.theme.TextGreen
 import com.ezzy.presentation.features.goal.withdraw.models.CreditAccount
 
 @Composable
@@ -60,8 +61,6 @@ fun CreditAccountSelector(
                     ),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
-                // Account icon
                 Icon(
                     painter = painterResource(R.drawable.creditcard),
                     contentDescription = null,
@@ -98,7 +97,7 @@ fun CreditAccountSelector(
         Text(
             text = "Available balance: ${"%,.2f".format(account.balance)} KES",
             fontSize = 12.sp,
-            color = Color(0xFF8BC34A)
+            color = TextGreen
         )
     }
 }

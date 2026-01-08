@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.ezzy.presentation.features.goal.deposit.DepositRoute
 import com.ezzy.presentation.features.goal.createGoal.CreateGoalRootScreen
 import com.ezzy.presentation.features.goal.goalsMain.GoalsRoute
 import com.ezzy.presentation.features.goal.withdraw.WithdrawRoute
@@ -55,9 +56,9 @@ fun AppNavGraph(
                     navController.navigate(AppRoute.CreateGoalsScreen)
                 },
                 onNavigateToDeposit = { goalId ->
-//                    navController.navigate(
-//                        AppRoute.DepositScreen(goalId)
-//                    )
+                    navController.navigate(
+                        AppRoute.DepositScreen(goalId)
+                    )
                 },
                 onNavigateToWithdraw = { goalId ->
                     navController.navigate(
@@ -78,5 +79,15 @@ fun AppNavGraph(
             )
         }
 
+        composable<AppRoute.DepositScreen> {
+            DepositRoute(
+                onBack = {
+                    navController.navigateUp()
+                },
+                onGoToGoals = {
+                    navController.navigate(AppRoute.GoalsScreen)
+                }
+            )
+        }
     }
 }
